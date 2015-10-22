@@ -44,8 +44,14 @@ namespace MemoryGame
       {
         
         int randomKaart = new Random().Next(0, arrayKaarten.Length);
-        Console.WriteLine(arrayKaarten);
-        Shuffled[i] = arrayKaarten[randomKaart];
+        Console.WriteLine(randomKaart);
+        Console.WriteLine(arrayKaarten.Length);
+
+        Console.WriteLine(arrayKaarten[randomKaart]);
+        
+
+        //Console.WriteLine(Shuffled[i]);
+        //Shuffled[i] = arrayKaarten[randomKaart];
 
         // On the end of the code, "myArray" has only lenght of 2 (so index at 2 was removed).
         arrayKaarten = arrayKaarten.Where(w => w != arrayKaarten[randomKaart]).ToArray();
