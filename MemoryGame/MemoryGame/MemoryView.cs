@@ -40,5 +40,12 @@ namespace MemoryGame
 
     }
 
+    private void pictureBox1_Click(object sender, EventArgs e)
+    {
+      Console.WriteLine( ((PictureBox)sender).Name );
+    }
+
+    // algemene clickmethode 
+
   }
 }
