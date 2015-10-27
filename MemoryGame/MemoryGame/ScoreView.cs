@@ -12,9 +12,13 @@ namespace MemoryGame
 {
   public partial class ScoreView : UserControl
   {
-    public ScoreView()
+        ScoreController _sController;
+
+
+    public ScoreView(ScoreController sController)
     {
-      InitializeComponent();
+        _sController = sController;
+        InitializeComponent();
     }
 
     private void label1_Click(object sender, EventArgs e)
@@ -26,5 +30,10 @@ namespace MemoryGame
     {
 
     }
-  }
+
+        private void ScoreView_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

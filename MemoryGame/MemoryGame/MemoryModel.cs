@@ -9,10 +9,15 @@ namespace MemoryGame
   public class MemoryModel
   {
 
-    string[] _kaarten = { "card1-smaller", "card2-smaller", "card3-smaller", "card4-smaller", "card5-smaller", "card6-smaller", "card7-smaller", "card8-smaller", "card9-smaller", "card10-smaller", "card1-smaller", "card2-smaller", "card3-smaller", "card4-smaller", "card5-smaller", "card6-smaller", "card7-smaller", "card8-smaller", "card9-smaller", "card10-smaller" };
-    string[] _kaartenShuffled;
+    //string[] _kaarten = { "card1-smaller", "card2-smaller", "card3-smaller", "card4-smaller", "card5-smaller", "card6-smaller", "card7-smaller", "card8-smaller", "card9-smaller", "card10-smaller", "card1-smaller", "card2-smaller", "card3-smaller", "card4-smaller", "card5-smaller", "card6-smaller", "card7-smaller", "card8-smaller", "card9-smaller", "card10-smaller" };
+    //string[] _kaartenShuffled;
+    List<string> _kaarten = new List<string>();
+    //_kaarten.add
+    List<string> _kaartenShuffled = new List<string>();
 
-    public string[] kaarten
+
+
+    public List<string> kaarten
     {
 
       get { return _kaarten; }
@@ -20,7 +25,7 @@ namespace MemoryGame
 
     }
 
-    public string[] kaartenShuffled
+    public List<string> kaartenShuffled
     {
 
       get { return _kaartenShuffled;  }

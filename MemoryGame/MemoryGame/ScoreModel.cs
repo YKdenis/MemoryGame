@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MemoryGame
 {
-  class ScoreModel
+  public class ScoreModel
   {
     int _score = 0;
     int _highscore = 0;
