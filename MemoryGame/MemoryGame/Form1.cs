@@ -36,9 +36,21 @@ namespace MemoryGame
 
       timerView.Location = new Point(xPosTimer, 10);
 
+      ScoreController scoreController= memoryGame.getMView()._sController;
+
+      ScoreView scoreView = scoreController.getSView();
+
+      int xPosScore = memoryView.Width;
+
+      int yPosScore = timerView.Height;
+
+      scoreView.Location = new Point(xPosScore, yPosScore);
+
       Controls.Add(memoryView);
 
       Controls.Add(timerView);
+
+      Controls.Add(scoreView);
 
       
 
