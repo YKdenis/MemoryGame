@@ -51,6 +51,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button_new_game = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
@@ -99,7 +100,7 @@
             this.panel1.Location = new System.Drawing.Point(25, 14);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(716, 492);
+            this.panel1.Size = new System.Drawing.Size(716, 495);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -292,22 +293,33 @@
                 pictureBox.Click += new System.EventHandler(this.handleCardClick);
             }
 
-
             // 
             // timer1
             // 
             this.timer1.Interval = 400;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button_new_game
+            // 
+            this.button_new_game.AutoSize = true;
+            this.button_new_game.Location = new System.Drawing.Point(335, 516);
+            this.button_new_game.Name = "button_new_game";
+            this.button_new_game.Size = new System.Drawing.Size(89, 27);
+            this.button_new_game.TabIndex = 2;
+            this.button_new_game.Text = "New Game";
+            this.button_new_game.UseVisualStyleBackColor = true;
+            this.button_new_game.Click += new System.EventHandler(this.button_new_game_Click);
+            // 
             // MemoryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.button_new_game);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MemoryView";
-            this.Size = new System.Drawing.Size(754, 510);
+            this.Size = new System.Drawing.Size(754, 546);
             this.Load += new System.EventHandler(this.MemoryView_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
@@ -331,6 +343,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
     }
 
@@ -358,5 +371,6 @@
     private System.Windows.Forms.PictureBox pictureBox1;
     private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button_new_game;
     }
 }

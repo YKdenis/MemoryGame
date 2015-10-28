@@ -30,5 +30,22 @@ namespace MemoryGame
             return _sModel;
         }
 
-  }
+
+        public void calculateHighScore()
+        {
+            if (_sModel.Score > _sModel.HighScore)
+            {
+                _sModel.HighScore = _sModel.Score;
+            }
+        }
+
+
+        public void resetHighScore()
+        {
+            _sModel.HighScore = 0;
+        }
+
+
+
+    }
 }

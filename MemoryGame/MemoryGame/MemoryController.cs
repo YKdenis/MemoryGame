@@ -44,12 +44,12 @@ namespace MemoryGame
       {
         
         int randomKaart = new Random().Next(0, listKaarten.Count);
-        Console.WriteLine(randomKaart);
+        //Console.WriteLine(randomKaart);
         //Console.WriteLine(listKaarten.Count);
 
         //Console.WriteLine(listKaarten[randomKaart]);
         shuffledListKaarten.Add(listKaarten[randomKaart]);
-        Console.WriteLine(shuffledListKaarten[i]);
+        //Console.WriteLine(shuffledListKaarten[i]);
         listKaarten.RemoveAt(randomKaart);
 
         //Console.WriteLine(Shuffled[i]);
@@ -93,5 +93,15 @@ namespace MemoryGame
 
             //return kaarten;
         }
-  }
+
+        public List<string> createNewGame()
+        {
+            populateCardsList(_mModel.kaarten);
+            Console.WriteLine("kaart 1 = " + _mModel.kaarten[1]);
+            List<string> shuffled =  shuffleKaarten(_mModel.kaarten, _mModel.kaartenShuffled);
+            Console.WriteLine("shuffled1 = " + shuffled[1] + "shuffled2 = " + shuffled[2]);
+            return shuffled;
+            //_mView._sController.getSModel().Score = 0;
+        }
+    }
 }

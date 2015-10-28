@@ -11,20 +11,20 @@ namespace MemoryGame
     int _score = 0;
     int _highscore = 0;
 
-    public int score {
+    public int Score {
 
         get { return _score; }
 
-        set { value = _score; }
+        set { _score = value; }
 
       }
     
-    public int highscore
+    public int HighScore
     {
 
       get { return _highscore; }
 
-      set { value = _highscore;  }
+      set { _highscore = value;  }
 
     }
   }

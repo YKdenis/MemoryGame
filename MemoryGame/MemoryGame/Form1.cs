@@ -12,7 +12,7 @@ namespace MemoryGame
 {
   public partial class MemoryWindow : Form
   {
-    bool playAgain = false;
+    
 
     
 
@@ -28,7 +28,8 @@ namespace MemoryGame
 
       MemoryView memoryView = memoryGame.getMView();
 
-      TimerController timer = new TimerController();
+      //TimerController timer = new TimerController();
+      TimerController timer = memoryGame.getMView()._tController;
 
       TimerView timerView = timer.TimerGetView();
 
@@ -36,7 +37,7 @@ namespace MemoryGame
 
       timerView.Location = new Point(xPosTimer, 10);
 
-      ScoreController scoreController= memoryGame.getMView()._sController;
+      ScoreController scoreController = memoryGame.getMView()._sController;
 
       ScoreView scoreView = scoreController.getSView();
 

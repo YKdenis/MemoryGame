@@ -27,5 +27,12 @@ namespace MemoryGame
 
     }
 
-  }
+    public TimerModel getTModel()
+    {
+
+       return _Tmodel;
+
+    }
+
+    }
 }
