@@ -44,6 +44,8 @@ namespace MemoryGame
             //Console.WriteLine(shuffledKaarten);
       //Console.WriteLine(_mController.getMModel().kaarten[0]);
 
+
+      
       pictureBoxes.Add(pictureBox1);
       pictureBoxes.Add(pictureBox2);
       pictureBoxes.Add(pictureBox3);
@@ -162,10 +164,10 @@ namespace MemoryGame
                  timer1.Start();
             }
 
-            flippedCard1 = null;
-            flippedCard2 = null;
-            
-        }
+        flippedCard1 = null;
+        flippedCard2 = null;
+
+      }
 
      }
 
@@ -174,7 +176,7 @@ namespace MemoryGame
             timer1.Stop();
             pictureBoxes[card1 - 1].Image = cover;
             pictureBoxes[card2 - 1].Image = cover;
-        }
+    }
     }
 
 
