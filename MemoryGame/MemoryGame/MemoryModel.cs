@@ -14,7 +14,8 @@ namespace MemoryGame
     List<string> _kaarten = new List<string>();
     //_kaarten.add
     List<string> _kaartenShuffled = new List<string>();
-
+    
+    
 
 
     public List<string> kaarten
