@@ -21,7 +21,12 @@ namespace MemoryGame
         InitializeComponent();
     }
 
-    private void label1_Click(object sender, EventArgs e)
+    private void ScoreView_Load(object sender, EventArgs e)
+    {
+
+    }
+
+        private void label1_Click(object sender, EventArgs e)
     {
 
     }
@@ -31,9 +36,15 @@ namespace MemoryGame
 
     }
 
-        private void ScoreView_Load(object sender, EventArgs e)
-        {
+    public void updateScoreLabel()
+    {
+        tellerScore.Text = _sController.getSModel().Score.ToString();
+    }
 
-        }
+    public void updateHighScoreLabel()
+    {
+        tellerHighscore.Text = _sController.getSModel().HighScore.ToString();
+    }
+
     }
 }
