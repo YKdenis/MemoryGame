@@ -27,8 +27,7 @@ namespace MemoryGame
       MemoryController memoryGame = new MemoryController();
 
       MemoryView memoryView = memoryGame.getMView();
-
-      //TimerController timer = new TimerController();
+            
       TimerController timer = memoryGame.getMView()._tController;
 
       TimerView timerView = timer.TimerGetView();
