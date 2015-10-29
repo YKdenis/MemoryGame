@@ -12,11 +12,6 @@ namespace MemoryGame
 
     MemoryView _mView;
     MemoryModel _mModel;
-    
-
-    Random Location = new Random(); // Haalt een random waarde uit de posX en Ypos lijst --> coordinaten
-    List<int> posX = new List<int>(); // Lijst met X posities van de kaarten
-    List<int> posY = new List<int>(); // Lijst met Y posities van de kaarten
 
     public MemoryController()
     {
@@ -42,25 +37,14 @@ namespace MemoryGame
 
       for (int i = 0; i < lengthList; i++)
       {
-        
-        //int randomKaart = new Random().Next(0, listKaarten.Count);
+        //nieuwe randomnummer genereren om de kaartnaam van een randompositie uit de originele list te halen
         int randomKaart = new Random(Guid.NewGuid().GetHashCode()).Next(0, listKaarten.Count);
-        //Console.WriteLine(randomKaart);
-        //Console.WriteLine(listKaarten.Count);
 
-        //Console.WriteLine(listKaarten[randomKaart]);
         shuffledListKaarten.Add(listKaarten[randomKaart]);
-        //Console.WriteLine(shuffledListKaarten[i]);
         listKaarten.RemoveAt(randomKaart);
 
-        //Console.WriteLine(Shuffled[i]);
-        //Shuffled[i] = arrayKaarten[randomKaart];
-
-        // On the end of the code, "myArray" has only lenght of 2 (so index at 2 was removed).
-        //arrayKaarten = arrayKaarten.Where(w => w != arrayKaarten[randomKaart]).ToArray();
-
       }
-      _mModel.kaartenShuffled = shuffledListKaarten;
+      
       return shuffledListKaarten;
 
 
@@ -91,18 +75,13 @@ namespace MemoryGame
 
 
             _mModel.kaarten = kaarten;
-
-            //return kaarten;
         }
 
         public List<string> createNewGame()
         {
             populateCardsList(_mModel.kaarten);
-            Console.WriteLine("kaart 1 = " + _mModel.kaarten[1]);
             List<string> shuffled =  shuffleKaarten(_mModel.kaarten, _mModel.kaartenShuffled);
-            Console.WriteLine("shuffled1 = " + shuffled[1] + "shuffled2 = " + shuffled[2]);
             return shuffled;
-            //_mView._sController.getSModel().Score = 0;
         }
     }
 }

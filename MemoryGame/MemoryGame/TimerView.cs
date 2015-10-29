@@ -13,7 +13,6 @@ namespace MemoryGame
   public partial class TimerView : UserControl
   {
     TimerController _controller;
-    //public int tijd = 0;
 
     public TimerView(TimerController controller)
     {
@@ -33,28 +32,16 @@ namespace MemoryGame
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-      //dan moet je hier eigenlijk ook de tijd gaan ophalen uit het model
-      /*
-      tijd = Convert.ToInt32(timerTime.Text);
-      tijd--;
-      timerTime.Text = tijd.ToString();
-      
-      if(tijd == 0)
-      {
-          Console.WriteLine("Game Over");
-      }
-      */
-
       _controller.getTModel().Tijd = Convert.ToInt32(timerTime.Text);
       _controller.getTModel().Tijd--;
       timerTime.Text = _controller.getTModel().Tijd.ToString();
 
       if(_controller.getTModel().Tijd == 0)
       {
-          Console.WriteLine("Game Over");
           timerTime.Text = "Game  Over";
           timer1.Stop();
-      }
+        _controller._memoryView.disableGame();  
+          }
 
      }
 
@@ -68,6 +55,11 @@ namespace MemoryGame
     public void startTimer()
     {
         timer1.Start();
+    }
+
+    public void stopTimer()
+    {
+      timer1.Stop();
     }
 
   }

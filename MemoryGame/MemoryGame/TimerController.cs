@@ -8,15 +8,16 @@ namespace MemoryGame
 {
   public class TimerController
   {
-
+    public MemoryView _memoryView;
     TimerView _Tview;
     TimerModel _Tmodel;
 
-    public TimerController()
+    public TimerController(MemoryView memoryView)
     {
 
       _Tview = new TimerView(this);
       _Tmodel = new TimerModel();
+      _memoryView = memoryView;
 
     }
 
