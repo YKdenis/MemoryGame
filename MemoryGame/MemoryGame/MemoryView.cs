@@ -14,38 +14,38 @@ namespace MemoryGame
   {
     MemoryController _mController;
     public ScoreController _sController = new ScoreController();
+    public TimerController _tController;
+
     Image cover = Properties.Resources.cover3;
 
     List<PictureBox> pictureBoxes = new List<PictureBox>();
-    List<string> shuffledKaarten;
+    
 
     //onderstaande variabelen dienen om de image van de omgedraaide kaarten in te bewaren
-    string flippedCard1;
-    string flippedCard2;
+    
 
     //onderstaande variabelen dienen om te kijken op welke picturebox geklikt is, zodat je de image terug op cover kan zetten als de kaarten niet aan elkaar gelijk zijn
-    int card1 = 0;
-    int card2 = 0;
+    
         
 
 
     public MemoryView(MemoryController mController)
     {
       _mController = mController;
+      _tController = new TimerController(this);
       InitializeComponent();
     }
 
     private void MemoryView_Load(object sender, EventArgs e)
     {
-      _mController.populateCardsList(_mController.getMModel().kaarten);
-      shuffledKaarten = _mController.shuffleKaarten(_mController.getMModel().kaarten, _mController.getMModel().kaartenShuffled);
+      //_mController.populateCardsList(_mController.getMModel().kaarten);
+      //shuffledKaarten = _mController.shuffleKaarten(_mController.getMModel().kaarten, _mController.getMModel().kaartenShuffled);
 
-            //Console.WriteLine(_mController.shuffleKaarten(_mController.getMModel().kaarten, _mController.getMModel().kaartenShuffled));
-            //Console.WriteLine(shuffledKaarten);
+      //Console.WriteLine(_mController.shuffleKaarten(_mController.getMModel().kaarten, _mController.getMModel().kaartenShuffled));
+      //Console.WriteLine(shuffledKaarten);
       //Console.WriteLine(_mController.getMModel().kaarten[0]);
 
-
-      
+      //alle pictureboxes van het panel in een list gaan steken zodat ze accessible zijn
       pictureBoxes.Add(pictureBox1);
       pictureBoxes.Add(pictureBox2);
       pictureBoxes.Add(pictureBox3);
@@ -68,20 +68,22 @@ namespace MemoryGame
       pictureBoxes.Add(pictureBox20);
 
 
-            foreach (PictureBox picture in panel1.Controls) //moet for loop worden waar telkens voor elke picture de afbeelding overeenkomstig met i in de shuffled array list
-      {
-        
-        picture.Image = cover;
-        
-      }
+      /*foreach (PictureBox picture in panel1.Controls) //moet for loop worden waar telkens voor elke picture de afbeelding overeenkomstig met i in de shuffled array list
+{
 
-      for(int i = 0; i < _mController.getMModel().kaartenShuffled.Count; i++)
-            {
-                //object o = Properties.Resources.ResourceManager.GetObject("card9")
-                Console.WriteLine(shuffledKaarten[i]);
-                //pictureBoxes[i].Image = (Image)Properties.Resources.ResourceManager.GetObject(shuffledKaarten[i]);
-                //pictureBoxes[i].Image = Properties.Resources.card1_smaller;
-            }
+  picture.Image = cover;
+
+}
+
+for(int i = 0; i < _mController.getMModel().kaartenShuffled.Count; i++)
+      {
+          //object o = Properties.Resources.ResourceManager.GetObject("card9")
+          Console.WriteLine(shuffledKaarten[i]);
+          //pictureBoxes[i].Image = (Image)Properties.Resources.ResourceManager.GetObject(kaartenShuffled[i]);
+          //pictureBoxes[i].Image = Properties.Resources.card1_smaller;
+      }*/
+
+      createNewGame();
 
     }
 
@@ -103,8 +105,6 @@ namespace MemoryGame
         //testje: de sender is diegene waar op geklikt is, daarvan kan je dus rechtstreeks de image aanpassen:
         //((PictureBox)sender).Image = Properties.Resources.card1_smaller;
 
-        //maar dat kunnen wij niet gebruiken, omdat welke image ingeladen wordt, afhankelijk is van de picturebox waar op geklikt werd
-
         //je gaat de naam van de picturebox ophalen
         string nameOfPictureBox = ((PictureBox)sender).Name;
 
@@ -119,7 +119,7 @@ namespace MemoryGame
             string lastChar = nameOfPictureBox[nameOfPictureBox.Length - 1].ToString();
             //de string dan omzetten naar een integer, zodat je hem als index kan gebruiken
             lastCharInt = Int32.Parse(lastChar);
-            Console.WriteLine("laatste karakter = " + lastCharInt);
+            //Console.WriteLine("laatste karakter = " + lastCharInt);
         }
         else if(nameOfPictureBox.Length == 12)
         {
@@ -128,33 +128,59 @@ namespace MemoryGame
             lastCharInt = Int32.Parse(lastChars);
         }
 
-        //dan ga je de achtergrondimage van de picturebox waar op geklikt is gelijk zetten aan zijn waarde van de shuffledKaarten
-        ((PictureBox)sender).Image = (Image)Properties.Resources.ResourceManager.GetObject(shuffledKaarten[(lastCharInt)-1]);
+        //dan ga je de achtergrondimage van de picturebox waar op geklikt is gelijk zetten aan zijn waarde van de kaartenShuffled
+        ((PictureBox)sender).Image = (Image)Properties.Resources.ResourceManager.GetObject(_mController.getMModel().kaartenShuffled[(lastCharInt)-1]);
 
 
-        if (flippedCard1 == null && flippedCard2 == null)
+        if (_mController.getMModel().flippedCard1 == null && _mController.getMModel().flippedCard2 == null)
         {
-            flippedCard1 = shuffledKaarten[(lastCharInt) - 1];
-            card1 = lastCharInt;
-            Console.WriteLine("card1 = " + card1);
+        _mController.getMModel().flippedCard1 = _mController.getMModel().kaartenShuffled[(lastCharInt) - 1];
+            _mController.getMModel().card1 = lastCharInt;
+            //Console.WriteLine("card1 = " + card1);
         }
-        else if(flippedCard1 != null && flippedCard2 == null)
+        else if(_mController.getMModel().flippedCard1 != null && _mController.getMModel().flippedCard2 == null)
         {
-            flippedCard2 = shuffledKaarten[(lastCharInt) - 1];
-            card2 = lastCharInt;
-            Console.WriteLine("card2 = " + card2);
+        _mController.getMModel().flippedCard2 = _mController.getMModel().kaartenShuffled[(lastCharInt) - 1];
+            _mController.getMModel().card2 = lastCharInt;
+            //Console.WriteLine("card2 = " + card2);
         }
-        if(flippedCard1 != null && flippedCard2 != null)
+        if(_mController.getMModel().flippedCard1 != null && _mController.getMModel().flippedCard2 != null)
         {
-            Console.WriteLine("flipped card1= " + flippedCard1 + "and flipped card2 = " + flippedCard2);
-            Console.WriteLine("card1 =" + card1 + "and card2 = " + card2);
+            //Console.WriteLine("flipped card1= " + flippedCard1 + "and flipped card2 = " + flippedCard2);
+            //Console.WriteLine("card1 =" + card1 + "and card2 = " + card2);
             //als er 2 kaarten omgedraaid zijn, moet je gaan controleren of ze hetzelfde zijn
-            if(flippedCard1 == flippedCard2)
+            if(_mController.getMModel().flippedCard1 == _mController.getMModel().flippedCard2)
             {
                 Console.WriteLine("you added 10 points to your score");
-                //_sController.getSModel().score += 10; //je moet hier eigenlijk een functie updateScore aanroepen
-                //Console.WriteLine(_sController.getSModel().score);
-            }
+                //je score in het model bijwerken
+                _sController.getSModel().Score += 10;
+                //je scoreLabel in de view bijwerken
+                _sController.getSView().updateScoreLabel();
+                //je highscore gaan bijwerken in het model (highscore wordt per sessie bijgehouden)
+                _sController.calculateHighScore();
+                _sController.getSView().updateHighScoreLabel();
+                
+                if(_sController.getSModel().Score == 100)
+                {
+                    //hierin misschien best een aparte methode oproepen, anders wordt de handleclick wel heel uitgebreid
+                    Console.WriteLine("Yay, gewonnen");
+                    //dat hieronder moet nog helemaal aangepast worden
+                    int tijd = Convert.ToInt32(_tController.getTModel().Tijd);
+                    _sController.getSModel().Score += tijd;
+                    Console.WriteLine("totale score = " + _sController.getSModel().Score);
+                    _sController.getSView().updateScoreLabel();
+                    //je highscore gaan bijwerken in het model (highscore wordt per sessie bijgehouden)
+                    _sController.calculateHighScore();
+                    _sController.getSView().updateHighScoreLabel();
+                    _tController.TimerGetView().stopTimer();
+
+                    _sController.getSView().showGewonnen();
+                    }
+                
+                //als de kaarten gelijk aan elkaar zijn wordt hun enabled op false gezet, zodat je er niet meer op kan klikken en je dus niet kan valsspelen om je score te verhogen
+                pictureBoxes[_mController.getMModel().card1 - 1].Enabled = false;
+                pictureBoxes[_mController.getMModel().card2 - 1].Enabled = false;
+                }
             else
             {
                  Console.WriteLine("Kaarten zijn niet gelijk aan elkaar");
@@ -164,20 +190,66 @@ namespace MemoryGame
                  timer1.Start();
             }
 
-        flippedCard1 = null;
-        flippedCard2 = null;
+        _mController.getMModel().flippedCard1 = null;
+        _mController.getMModel().flippedCard2 = null;
 
       }
 
      }
 
-        private void timer1_Tick(object sender, EventArgs e)
+     private void timer1_Tick(object sender, EventArgs e)
+     {
+         timer1.Stop();
+         pictureBoxes[(_mController.getMModel().card1 - 1)].Image = cover;
+         pictureBoxes[(_mController.getMModel().card2 - 1)].Image = cover;
+     }
+
+
+    private void createNewGame()
+    {
+        if(_mController.getMModel().kaartenShuffled != null)
         {
-            timer1.Stop();
-            pictureBoxes[card1 - 1].Image = cover;
-            pictureBoxes[card2 - 1].Image = cover;
+        //Console.WriteLine(kaartenShuffled.Count);
+        _mController.getMModel().kaartenShuffled.Clear();
+        }
+
+      //nieuwe list met shuffled kaarten aanmaken
+      _mController.getMModel().kaartenShuffled = _mController.createNewGame();
+
+        foreach (PictureBox picture in panel1.Controls) //moet for loop worden waar telkens voor elke picture de afbeelding overeenkomstig met i in de shuffled array list
+        {
+            picture.Image = cover;
+        }
+
+            _tController.getTModel().Tijd = 40;
+            _tController.TimerGetView().updateTimerLabel();
+            _tController.TimerGetView().startTimer();
+            _sController.getSView().hideGewonnen();
     }
+
+    private void button_new_game_Click(object sender, EventArgs e)
+    {
+        _sController.getSModel().Score = 0;
+        _sController.getSView().updateScoreLabel();
+
+        foreach (PictureBox picture in panel1.Controls) //moet for loop worden waar telkens voor elke picture de afbeelding overeenkomstig met i in de shuffled array list
+        {
+            picture.Enabled = true;
+        }
+
+        createNewGame();
     }
+      
+    public void disableGame()
+    {
+     
+      foreach( PictureBox picture in panel1.Controls)
+      {
+        picture.Enabled = false;
+      }
+
+    }
+  }
 
 
 
