@@ -43,7 +43,8 @@ namespace MemoryGame
       for (int i = 0; i < lengthList; i++)
       {
         
-        int randomKaart = new Random().Next(0, listKaarten.Count);
+        //int randomKaart = new Random().Next(0, listKaarten.Count);
+        int randomKaart = new Random(Guid.NewGuid().GetHashCode()).Next(0, listKaarten.Count);
         //Console.WriteLine(randomKaart);
         //Console.WriteLine(listKaarten.Count);
 

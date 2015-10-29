@@ -164,11 +164,15 @@ namespace MemoryGame
                 {
                     //hierin misschien best een aparte methode oproepen, anders wordt de handleclick wel heel uitgebreid
                     Console.WriteLine("Yay, gewonnen");
-                        //dat hieronder moet nog helemaal aangepast worden
-                        int tijd = Convert.ToInt32(_tController.TimerGetView().tijd);
-                        _sController.getSModel().Score += tijd;
-                        Console.WriteLine("totale score = " + _sController.getSModel().Score);
-                }
+                    //dat hieronder moet nog helemaal aangepast worden
+                    int tijd = Convert.ToInt32(_tController.getTModel().Tijd);
+                    _sController.getSModel().Score += tijd;
+                    Console.WriteLine("totale score = " + _sController.getSModel().Score);
+                    _sController.getSView().updateScoreLabel();
+                    //je highscore gaan bijwerken in het model (highscore wordt per sessie bijgehouden)
+                    _sController.calculateHighScore();
+                    _sController.getSView().updateHighScoreLabel();
+                    }
                 
                 //als de kaarten gelijk aan elkaar zijn wordt hun enabled op false gezet, zodat je er niet meer op kan klikken en je dus niet kan valsspelen om je score te verhogen
                 pictureBoxes[card1 - 1].Enabled = false;
@@ -216,6 +220,7 @@ namespace MemoryGame
 
             _tController.getTModel().Tijd = 40;
             _tController.TimerGetView().updateTimerLabel();
+            _tController.TimerGetView().startTimer();
     }
 
     private void button_new_game_Click(object sender, EventArgs e)
