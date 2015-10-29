@@ -46,5 +46,15 @@ namespace MemoryGame
         tellerHighscore.Text = _sController.getSModel().HighScore.ToString();
     }
 
+    public void showGewonnen()
+    {
+      gewonnen.Visible = true;
     }
+
+    public void hideGewonnen()
+    {
+      gewonnen.Visible = false;
+    }
+
+  }
 }

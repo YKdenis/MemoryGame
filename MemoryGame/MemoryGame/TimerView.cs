@@ -54,7 +54,8 @@ namespace MemoryGame
           Console.WriteLine("Game Over");
           timerTime.Text = "Game  Over";
           timer1.Stop();
-      }
+        _controller._memoryView.disableGame();  
+          }
 
      }
 
@@ -68,6 +69,11 @@ namespace MemoryGame
     public void startTimer()
     {
         timer1.Start();
+    }
+
+    public void stopTimer()
+    {
+      timer1.Stop();
     }
 
   }

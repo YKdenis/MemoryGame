@@ -12,11 +12,6 @@ namespace MemoryGame
 
     MemoryView _mView;
     MemoryModel _mModel;
-    
-
-    Random Location = new Random(); // Haalt een random waarde uit de posX en Ypos lijst --> coordinaten
-    List<int> posX = new List<int>(); // Lijst met X posities van de kaarten
-    List<int> posY = new List<int>(); // Lijst met Y posities van de kaarten
 
     public MemoryController()
     {
@@ -42,7 +37,6 @@ namespace MemoryGame
 
       for (int i = 0; i < lengthList; i++)
       {
-        
         //int randomKaart = new Random().Next(0, listKaarten.Count);
         int randomKaart = new Random(Guid.NewGuid().GetHashCode()).Next(0, listKaarten.Count);
         //Console.WriteLine(randomKaart);
@@ -60,7 +54,7 @@ namespace MemoryGame
         //arrayKaarten = arrayKaarten.Where(w => w != arrayKaarten[randomKaart]).ToArray();
 
       }
-      _mModel.kaartenShuffled = shuffledListKaarten;
+      
       return shuffledListKaarten;
 
 

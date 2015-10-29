@@ -10,7 +10,7 @@ namespace MemoryGame
   {
 
         int _tijd = 0;
-
+        bool _gameOver = false;
 
         public int Tijd
         {
@@ -20,7 +20,11 @@ namespace MemoryGame
             set { _tijd = value; }
 
         }
-
+        public bool gameOver
+    {
+      get { return _gameOver; }
+      set { _gameOver = value; }
+    }
 
     }
 }
