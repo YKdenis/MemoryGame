@@ -52,6 +52,7 @@ namespace MemoryGame
       if(_controller.getTModel().Tijd == 0)
       {
           Console.WriteLine("Game Over");
+          timer1.Stop();
       }
 
      }
